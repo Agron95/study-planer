@@ -297,8 +297,6 @@ titleInput.addEventListener("input", function() {
 dueDateInput.addEventListener("input", function() {
     errorMessage.textContent = "";
 });
-
-
 // Filter buttons
 filterButtons.forEach(function(button) {
 
