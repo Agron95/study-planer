@@ -1,0 +1,383 @@
+/* ---------- Colors and basic settings ---------- */
+:root {
+  --white: #ffffff;
+  --bg: #f7f8ff;
+  --purple: #7c6cf0;
+  --purple-dark: #6454d8;
+  --purple-light: #ece9ff;
+  --blue: #5aa9f5;
+  --text: #272a3d;
+  --muted: #7b7f96;
+  --border: #e4e6f2;
+  --danger: #e5566d;
+  --shadow: 0 4px 16px rgba(100, 84, 216, 0.08);
+  --shadow-hover: 0 8px 24px rgba(100, 84, 216, 0.16);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+main.container {
+  flex: 1;
+  padding-bottom: 40px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+/* ---------- Header ---------- */
+.header {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 28px 0 24px;
+  margin-bottom: 28px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-icon {
+  font-size: 1.8rem;
+}
+
+.header h1 {
+  font-size: 1.9rem;
+  color: var(--purple-dark);
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* ---------- Cards ---------- */
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  padding: 20px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+/* ---------- Dashboard ---------- */
+.dashboard h2 {
+  font-size: 1.4rem;
+  margin-bottom: 16px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2px;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+}
+
+.stat-icon {
+  font-size: 1.4rem;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--purple-dark);
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* Progress bar */
+.progress-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+}
+
+.progress-top strong {
+  color: var(--purple-dark);
+}
+
+.progress-track {
+  height: 12px;
+  background: var(--purple-light);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+/* ---------- Add task ---------- */
+.add-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.add-section input {
+  flex: 1;
+  min-width: 0;
+  padding: 13px 16px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--text);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.add-section input:focus {
+  border-color: var(--purple);
+  box-shadow: 0 0 0 4px var(--purple-light);
+}
+
+.btn-primary {
+  padding: 13px 26px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--white);
+  background: var(--purple);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.btn-primary:hover {
+  background: var(--purple-dark);
+  transform: translateY(-2px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.error-message {
+  width: 100%;
+  color: var(--danger);
+  font-size: 0.9rem;
+  min-height: 0;
+}
+
+.error-message:empty {
+  display: none;
+}
+
+/* ---------- Tasks ---------- */
+.tasks-section {
+  margin-top: 24px;
+}
+
+.filters {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  background: var(--bg);
+  padding: 5px;
+  border-radius: 14px;
+}
+
+.filter-btn {
+  flex: 1;
+  padding: 9px 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--muted);
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.filter-btn:hover {
+  color: var(--purple-dark);
+  background: var(--purple-light);
+}
+
+.filter-btn.active {
+  color: var(--white);
+  background: var(--purple);
+}
+
+.task-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.task-item:hover {
+  border-color: var(--purple);
+  transform: translateX(3px);
+}
+
+.task-item input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  accent-color: var(--purple);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.task-title {
+  flex: 1;
+  word-break: break-word;
+}
+
+/* Completed tasks look faded with a line through the text */
+.task-item.completed {
+  background: var(--bg);
+}
+
+.task-item.completed .task-title {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+.delete-btn {
+  padding: 7px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--danger);
+  background: #fdeef0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.delete-btn:hover {
+  background: var(--danger);
+  color: var(--white);
+}
+
+.empty-message {
+  text-align: center;
+  color: var(--muted);
+  padding: 28px 10px;
+}
+
+.empty-message:empty {
+  display: none;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+  padding: 22px 20px;
+  border-top: 1px solid var(--border);
+  background: var(--white);
+}
+
+/* ---------- Keyboard focus ---------- */
+button:focus-visible,
+input[type="checkbox"]:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 2px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+  .header h1 {
+    font-size: 1.6rem;
+  }
+
+  .stats {
+    gap: 10px;
+  }
+
+  .stat-number {
+    font-size: 1.6rem;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+  }
+
+  .card {
+    padding: 16px;
+  }
+
+  .btn-primary {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
