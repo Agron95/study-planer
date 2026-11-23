@@ -121,7 +121,19 @@ main.container {
 .stat-icon {
   font-size: 1.4rem;
 }
+.form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 150px;
+    gap: 6px;
+}
 
+.form-group label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text);
+}
 .stat-number {
   font-size: 2rem;
   font-weight: 700;
@@ -348,6 +360,7 @@ input[type="checkbox"]:focus-visible {
   outline: 3px solid var(--blue);
   outline-offset: 2px;
 }
+
 
 /* ---------- Responsive ---------- */
 @media (max-width: 600px) {

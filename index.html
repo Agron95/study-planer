@@ -1,89 +1,216 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>StudyFlow – Student Study Task Manager</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>StudyFlow – Student Study Task Manager</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <!-- Header -->
-  <header class="header">
-    <div class="container">
-      <div class="logo">
-        <span class="logo-icon" aria-hidden="true">📘</span>
-        <h1>StudyFlow</h1>
-      </div>
-      <p class="subtitle">Organize your studies, achieve your goals.</p>
-    </div>
-  </header>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
 
-  <main class="container">
+            <div class="logo">
+                <span class="logo-icon" aria-hidden="true">📘</span>
+                <h1>StudyFlow</h1>
+            </div>
 
-    <!-- Dashboard: welcome message and statistics -->
-    <section class="dashboard" aria-labelledby="welcome-title">
-      <h2 id="welcome-title">Welcome back, Student!</h2>
+            <p class="subtitle">
+                Organize your studies, achieve your goals.
+            </p>
 
-      <div class="stats">
-        <div class="card stat-card">
-          <span class="stat-icon" aria-hidden="true">📚</span>
-          <span class="stat-number" id="total-count">0</span>
-          <span class="stat-label">Total tasks</span>
         </div>
-        <div class="card stat-card">
-          <span class="stat-icon" aria-hidden="true">✅</span>
-          <span class="stat-number" id="completed-count">0</span>
-          <span class="stat-label">Completed</span>
-        </div>
-        <div class="card stat-card">
-          <span class="stat-icon" aria-hidden="true">⏳</span>
-          <span class="stat-number" id="active-count">0</span>
-          <span class="stat-label">Active</span>
-        </div>
-      </div>
+    </header>
 
-      <!-- Progress bar -->
-      <div class="card progress-card">
-        <div class="progress-top">
-          <span>Your progress</span>
-          <strong id="progress-text">0%</strong>
-        </div>
-        <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-track">
-          <div class="progress-fill" id="progress-fill"></div>
-        </div>
-      </div>
-    </section>
 
-    <!-- Add task section -->
-    <section class="card add-section" aria-label="Add a new task">
-      <label for="task-input" class="visually-hidden">Task name</label>
-      <input type="text" id="task-input" placeholder="What do you need to study today?" maxlength="100" autocomplete="off">
-      <button type="button" id="add-button" class="btn-primary">Add Task</button>
-      <p class="error-message" id="error-message" role="alert"></p>
-    </section>
+    <main class="container">
 
-    <!-- Task management section -->
-    <section class="card tasks-section" aria-label="Your study tasks">
-      <div class="filters" role="group" aria-label="Filter tasks">
-        <button type="button" class="filter-btn active" data-filter="all">All</button>
-        <button type="button" class="filter-btn" data-filter="active">Active</button>
-        <button type="button" class="filter-btn" data-filter="completed">Completed</button>
-      </div>
+        <!-- Dashboard -->
+        <section class="dashboard" aria-labelledby="welcome-title">
 
-      <ul class="task-list" id="task-list"></ul>
+            <h2 id="welcome-title">Welcome back, Student!</h2>
 
-      <!-- Shown when there is nothing to display -->
-      <p class="empty-message" id="empty-message"></p>
-    </section>
+            <div class="stats">
 
-  </main>
+                <div class="card stat-card">
+                    <span class="stat-icon" aria-hidden="true">📚</span>
+                    <span class="stat-number" id="total-count">0</span>
+                    <span class="stat-label">Total tasks</span>
+                </div>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p>Made for students. Stay focused, stay productive.</p>
-  </footer>
+                <div class="card stat-card">
+                    <span class="stat-icon" aria-hidden="true">✅</span>
+                    <span class="stat-number" id="completed-count">0</span>
+                    <span class="stat-label">Completed</span>
+                </div>
 
-  <script src="script.js"></script>
+                <div class="card stat-card">
+                    <span class="stat-icon" aria-hidden="true">⏳</span>
+                    <span class="stat-number" id="active-count">0</span>
+                    <span class="stat-label">Active</span>
+                </div>
+
+            </div>
+
+
+            <!-- Progress bar -->
+            <div class="card progress-card">
+
+                <div class="progress-top">
+                    <span>Your progress</span>
+                    <strong id="progress-text">0%</strong>
+                </div>
+
+                <div
+                    class="progress-track"
+                    role="progressbar"
+                    aria-label="Task completion progress"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-valuenow="0"
+                    id="progress-track"
+                >
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Add task section -->
+        <form class="card add-section" id="task-form">
+
+            <div class="form-group">
+
+                <label for="subject-input">Subject</label>
+
+                <input
+                    type="text"
+                    id="subject-input"
+                    placeholder="e.g. Mathematics"
+                    maxlength="50"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="title-input">Task title</label>
+
+                <input
+                    type="text"
+                    id="title-input"
+                    placeholder="What do you need to study?"
+                    maxlength="100"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="due-date-input">Due date</label>
+
+                <input
+                    type="date"
+                    id="due-date-input"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                id="add-button"
+                class="btn-primary"
+            >
+                Add Task
+            </button>
+
+            <p
+                class="error-message"
+                id="error-message"
+                role="alert"
+            ></p>
+
+        </form>
+
+
+        <!-- Task management section -->
+        <section class="card tasks-section" aria-label="Your study tasks">
+
+            <!-- Filters -->
+            <div class="filters" role="group" aria-label="Filter tasks">
+
+                <button
+                    type="button"
+                    class="filter-btn active"
+                    data-filter="all"
+                    aria-pressed="true"
+                >
+                    All
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-btn"
+                    data-filter="active"
+                    aria-pressed="false"
+                >
+                    Active
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-btn"
+                    data-filter="completed"
+                    aria-pressed="false"
+                >
+                    Completed
+                </button>
+
+            </div>
+
+
+            <!-- Task list -->
+            <ul class="task-list" id="task-list"></ul>
+
+
+            <!-- Empty message -->
+            <p class="empty-message" id="empty-message">
+                No tasks yet. Add your first study task above.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+
+        <p>
+            Made for students. Stay focused, stay productive.
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script src="script.js" defer></script>
+
 </body>
+
 </html>
