@@ -293,7 +293,6 @@ subjectInput.addEventListener("input", function() {
 titleInput.addEventListener("input", function() {
     errorMessage.textContent = "";
 });
-
 dueDateInput.addEventListener("input", function() {
     errorMessage.textContent = "";
 });
