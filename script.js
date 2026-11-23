@@ -23,10 +23,8 @@ const progressTrack = document.getElementById("progress-track");
 
 // ---------- 2. App data ----------
 
-// Array where all tasks are stored
 let tasks = [];
 
-// Selected filter
 let currentFilter = "all";
 
 
@@ -36,12 +34,10 @@ function addTask(event) {
 
     event.preventDefault();
 
-    // Get values from inputs
     const subject = subjectInput.value.trim();
     const title = titleInput.value.trim();
     const dueDate = dueDateInput.value;
 
-    // Check if inputs are empty
     if (subject === "" || title === "" || dueDate === "") {
 
         errorMessage.textContent = "Please fill in all fields.";
@@ -49,7 +45,6 @@ function addTask(event) {
         return;
     }
 
-    // Create a new task
     const newTask = {
         id: Date.now().toString() + Math.random().toString(16).slice(2),
         subject: subject,
@@ -58,15 +53,12 @@ function addTask(event) {
         completed: false
     };
 
-    // Add task to the array
     tasks.push(newTask);
 
-    // Clear the form
     taskForm.reset();
 
     errorMessage.textContent = "";
 
-    // Update the page
     render();
 
 }
