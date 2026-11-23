@@ -317,8 +317,5 @@ filterButtons.forEach(function(button) {
     });
 
 });
-
-
 // ---------- 11. Start the website ----------
-
 render();
