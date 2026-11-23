@@ -315,7 +315,6 @@ filterButtons.forEach(function(button) {
         render();
 
     });
-
 });
 // ---------- 11. Start the website ----------
 render();
