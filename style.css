@@ -351,12 +351,21 @@ input[type="checkbox"]:focus-visible {
 
 /* ---------- Responsive ---------- */
 @media (max-width: 600px) {
+  .container {
+    padding-inline: 14px;
+  }
+
+  .header {
+    padding: 20px 0 18px;
+    margin-bottom: 20px;
+  }
+
   .header h1 {
     font-size: 1.6rem;
   }
 
   .stats {
-    gap: 10px;
+    gap: 8px;
   }
 
   .stat-number {
@@ -365,14 +374,96 @@ input[type="checkbox"]:focus-visible {
 
   .stat-label {
     font-size: 0.8rem;
+    line-height: 1.2;
   }
 
   .card {
-    padding: 16px;
+    padding: 14px;
+  }
+
+  .dashboard h2 {
+    font-size: 1.25rem;
+  }
+
+  .add-section,
+  .tasks-section {
+    margin-top: 16px;
+  }
+
+  .add-section input {
+    flex-basis: 100%;
+    width: 100%;
   }
 
   .btn-primary {
     width: 100%;
+    min-height: 48px;
+  }
+
+  .filters {
+    gap: 4px;
+  }
+
+  .filter-btn {
+    min-height: 44px;
+    padding-inline: 8px;
+  }
+
+  .task-item {
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .task-item input[type="checkbox"] {
+    width: 24px;
+    height: 24px;
+  }
+
+  .delete-btn {
+    min-height: 44px;
+  }
+
+  .footer {
+    padding-inline: 14px;
+  }
+}
+
+@media (max-width: 380px) {
+  .container {
+    padding-inline: 10px;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+  }
+
+  .stats {
+    gap: 6px;
+  }
+
+  .stat-card {
+    padding-inline: 8px;
+  }
+
+  .stat-icon {
+    font-size: 1.2rem;
+  }
+
+  .stat-number {
+    font-size: 1.45rem;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+  }
+
+  .task-item {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr) auto;
+  }
+
+  .filter-btn {
+    font-size: 0.82rem;
   }
 }
 
