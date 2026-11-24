@@ -27,8 +27,74 @@ let tasks = [];
 
 let currentFilter = "all";
 
+const storageKey = "studyPlannerTasks";
 
-// ---------- 3. Add a new task ----------
+
+// ---------- 3. Save tasks to localStorage ----------
+
+function saveTasks() {
+
+    try {
+
+        localStorage.setItem(storageKey, JSON.stringify(tasks));
+
+    } catch (error) {
+
+        console.log("Could not save tasks.");
+
+    }
+
+}
+
+
+// ---------- 4. Load tasks from localStorage ----------
+
+function loadTasks() {
+
+    try {
+
+        const savedTasks = localStorage.getItem(storageKey);
+
+        if (savedTasks !== null) {
+
+            const parsedTasks = JSON.parse(savedTasks);
+
+            if (
+                Array.isArray(parsedTasks) &&
+                parsedTasks.every(function(task) {
+
+                    return task &&
+                        typeof task.id === "string" &&
+                        typeof task.subject === "string" &&
+                        typeof task.title === "string" &&
+                        typeof task.dueDate === "string" &&
+                        typeof task.completed === "boolean";
+
+                })
+            ) {
+
+                tasks = parsedTasks;
+
+            } else {
+
+                tasks = [];
+
+            }
+
+        }
+
+    } catch (error) {
+
+        tasks = [];
+
+        console.log("Could not load saved tasks.");
+
+    }
+
+}
+
+
+// ---------- 5. Add a new task ----------
 
 function addTask(event) {
 
@@ -55,6 +121,8 @@ function addTask(event) {
 
     tasks.push(newTask);
 
+    saveTasks();
+
     taskForm.reset();
 
     errorMessage.textContent = "";
@@ -64,7 +132,7 @@ function addTask(event) {
 }
 
 
-// ---------- 4. Mark task as completed ----------
+// ---------- 6. Mark task as completed ----------
 
 function toggleTask(id) {
 
@@ -83,12 +151,14 @@ function toggleTask(id) {
 
     });
 
+    saveTasks();
+
     render();
 
 }
 
 
-// ---------- 5. Delete a task ----------
+// ---------- 7. Delete a task ----------
 
 function deleteTask(id) {
 
@@ -98,12 +168,14 @@ function deleteTask(id) {
 
     });
 
+    saveTasks();
+
     render();
 
 }
 
 
-// ---------- 6. Filter tasks ----------
+// ---------- 8. Filter tasks ----------
 
 function getVisibleTasks() {
 
@@ -128,7 +200,7 @@ function getVisibleTasks() {
 }
 
 
-// ---------- 7. Display tasks ----------
+// ---------- 9. Display tasks ----------
 
 function renderTasks() {
 
@@ -238,7 +310,7 @@ function renderTasks() {
 }
 
 
-// ---------- 8. Update statistics ----------
+// ---------- 10. Update statistics ----------
 
 function renderStats() {
 
@@ -269,7 +341,7 @@ function renderStats() {
 }
 
 
-// ---------- 9. Render everything ----------
+// ---------- 11. Render everything ----------
 
 function render() {
 
@@ -280,7 +352,7 @@ function render() {
 }
 
 
-// ---------- 10. Event listeners ----------
+// ---------- 12. Event listeners ----------
 
 // Submit the form
 taskForm.addEventListener("submit", addTask);
@@ -293,9 +365,12 @@ subjectInput.addEventListener("input", function() {
 titleInput.addEventListener("input", function() {
     errorMessage.textContent = "";
 });
+
 dueDateInput.addEventListener("input", function() {
     errorMessage.textContent = "";
 });
+
+
 // Filter buttons
 filterButtons.forEach(function(button) {
 
@@ -312,6 +387,12 @@ filterButtons.forEach(function(button) {
         render();
 
     });
+
 });
-// ---------- 11. Start the website ----------
+
+
+// ---------- 13. Start the website ----------
+
+loadTasks();
+
 render();
