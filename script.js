@@ -401,6 +401,7 @@ dueDateInput.addEventListener("input", function() {
 
 
 // Filter buttons
+// Filter buttons
 filterButtons.forEach(function(button) {
 
     button.addEventListener("click", function() {
@@ -408,10 +409,14 @@ filterButtons.forEach(function(button) {
         currentFilter = button.dataset.filter;
 
         filterButtons.forEach(function(btn) {
+
             btn.classList.remove("active");
+            btn.setAttribute("aria-pressed", "false");
+
         });
 
         button.classList.add("active");
+        button.setAttribute("aria-pressed", "true");
 
         render();
 

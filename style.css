@@ -495,3 +495,63 @@ input[type="checkbox"]:focus-visible {
     font-weight: bold;
     margin-top: 6px;
 }
+/* ---------- Accessibility improvements ---------- */
+
+/* Visible keyboard focus */
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid #3b82f6;
+    outline-offset: 3px;
+}
+
+/* Better text contrast */
+:root {
+    --muted: #626780;
+    --purple: #6454d8;
+    --purple-dark: #5142bd;
+}
+
+/* Prevent task content from overflowing */
+.task-item {
+    min-width: 0;
+}
+
+.task-title {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.task-item button {
+    flex-shrink: 0;
+}
+
+/* Mobile layout */
+@media (max-width: 380px) {
+
+    .task-item {
+        grid-template-columns: 24px minmax(0, 1fr) auto;
+        gap: 8px;
+    }
+
+    .delete-btn {
+        padding: 7px 9px;
+        font-size: 0.8rem;
+    }
+
+    .card {
+        min-width: 0;
+    }
+
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+
+}
