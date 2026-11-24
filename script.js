@@ -94,7 +94,24 @@ function loadTasks() {
 }
 
 
-// ---------- 5. Add a new task ----------
+// ---------- 5. Check if task is overdue ----------
+
+function isOverdue(task) {
+
+    const today = new Date();
+
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
+
+    const todayDate = year + "-" + month + "-" + day;
+
+    return !task.completed && task.dueDate < todayDate;
+
+}
+
+
+// ---------- 6. Add a new task ----------
 
 function addTask(event) {
 
@@ -132,7 +149,7 @@ function addTask(event) {
 }
 
 
-// ---------- 6. Mark task as completed ----------
+// ---------- 7. Mark task as completed ----------
 
 function toggleTask(id) {
 
@@ -158,7 +175,7 @@ function toggleTask(id) {
 }
 
 
-// ---------- 7. Delete a task ----------
+// ---------- 8. Delete a task ----------
 
 function deleteTask(id) {
 
@@ -175,7 +192,7 @@ function deleteTask(id) {
 }
 
 
-// ---------- 8. Filter tasks ----------
+// ---------- 9. Filter tasks ----------
 
 function getVisibleTasks() {
 
@@ -200,7 +217,7 @@ function getVisibleTasks() {
 }
 
 
-// ---------- 9. Display tasks ----------
+// ---------- 10. Display tasks ----------
 
 function renderTasks() {
 
@@ -254,6 +271,18 @@ function renderTasks() {
         information.appendChild(subject);
         information.appendChild(title);
         information.appendChild(date);
+
+        // Show overdue label
+        if (isOverdue(task)) {
+
+            const overdueLabel = document.createElement("span");
+
+            overdueLabel.className = "overdue-label";
+            overdueLabel.textContent = "Overdue";
+
+            information.appendChild(overdueLabel);
+
+        }
 
         // Create delete button
         const deleteButton = document.createElement("button");
@@ -310,7 +339,7 @@ function renderTasks() {
 }
 
 
-// ---------- 10. Update statistics ----------
+// ---------- 11. Update statistics ----------
 
 function renderStats() {
 
@@ -341,7 +370,7 @@ function renderStats() {
 }
 
 
-// ---------- 11. Render everything ----------
+// ---------- 12. Render everything ----------
 
 function render() {
 
@@ -352,7 +381,7 @@ function render() {
 }
 
 
-// ---------- 12. Event listeners ----------
+// ---------- 13. Event listeners ----------
 
 // Submit the form
 taskForm.addEventListener("submit", addTask);
@@ -391,7 +420,7 @@ filterButtons.forEach(function(button) {
 });
 
 
-// ---------- 13. Start the website ----------
+// ---------- 14. Start the website ----------
 
 loadTasks();
 
